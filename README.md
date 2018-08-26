@@ -1,4 +1,4 @@
-# Blog-on-React
+# Блог на React JS
 React Blog
 
 + Настроен Webpack
