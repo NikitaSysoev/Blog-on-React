@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {load} from "actions/users";
+import {load, reverseList} from "actions/users";
 
 import UsersList from '../components/UsersList';
 
@@ -11,9 +11,9 @@ class UsersContainer extends Component {
     }
 
     render() {
-        const {users, loading} = this.props;
+        const {users, loading, reverse} = this.props;
         return (
-            !loading && users ? <UsersList users={users}/> : 'Loading...'
+            !loading && users ? <UsersList users={users} reverseList={reverse}/> : 'Loading...'
         );
     }
 }
@@ -30,6 +30,7 @@ function mapDispatchToProps(dispatch, props) {
     return {
         ...props,
         loadUsers: () => load(dispatch),
+        reverse: () => dispatch(reverseList())
     }
 }
 

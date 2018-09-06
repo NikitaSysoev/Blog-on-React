@@ -27,9 +27,9 @@ export default handleActions({
         }
     },
     [reverseList]: (state, action) => {
-        console.log(state.entities.reverse());
+        state.entities.reverse();
         return {
-            entities: state.entities.reverse(),
+            entities: Object.create(state.entities),
         }
     }
-}, {initialState});
+}, initialState);

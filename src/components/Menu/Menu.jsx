@@ -17,6 +17,9 @@ export default class Menu extends Component {
                 <li>
                     <Link className="nav-link" to="/users">Users</Link>
                 </li>
+                <li>
+                    <Link className="nav-link" to="/about">About</Link>
+                </li>
             </ul>
         </nav>
     }

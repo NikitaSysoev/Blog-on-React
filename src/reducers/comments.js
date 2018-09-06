@@ -4,6 +4,8 @@ import {loadStart, loadComplete, loadFail} from "actions/comments";
 const initialState = {
     loading: true,
     entities: [],
+    page: 1,
+    limit: 10,
 };
 
 export default handleActions({
@@ -30,4 +32,4 @@ export default handleActions({
             }
         }
     },
-    {initialState});
+    initialState);

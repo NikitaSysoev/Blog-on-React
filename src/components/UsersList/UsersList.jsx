@@ -2,14 +2,11 @@ import './UsersList.scss';
 
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-
-import {reverseList} from 'actions/users';
 
 import User from '../User';
 import {Table} from 'reactstrap';
 
-class UsersList extends Component {
+export default class UsersList extends Component {
     static propTypes = {};
     static defaultProps = {};
 
@@ -37,12 +34,3 @@ class UsersList extends Component {
         )
     }
 }
-
-function mapDispatchToProps(dispatch, props) {
-    return {
-        ...props,
-        reverseList: () => dispatch(reverseList())
-    }
-}
-
-export default connect(null, mapDispatchToProps)(UsersList);

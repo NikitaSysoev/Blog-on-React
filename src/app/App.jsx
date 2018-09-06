@@ -1,5 +1,5 @@
-import 'cssreboot/reboot.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'cssreboot/reboot.css';
 import './App.css';
 
 import React, {Component} from 'react';
@@ -15,6 +15,7 @@ import HomePage from '../pages/HomePage';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import PostDetailsPage from '../pages/PostDetailsPage';
+import About from '../components/About';
 
 export default class App extends Component {
     render() {
@@ -29,6 +30,7 @@ export default class App extends Component {
                             <Route exact path="/comments" component={CommentsPage}/>
                             <Route exact path="/users" component={UsersPage}/>
                             <Route exact path="/blog/:id" component={PostDetailsPage}/>
+                            <Route exact path="/about" component={About}/>
                             <Route exact path="*" component={PageNotFound}/>
                         </Switch>
                         <Footer/>
