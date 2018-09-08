@@ -16,7 +16,6 @@ export default class BlogPage extends Component {
                                 Latest posts
                             </h1>
                             <PostsContainer/>
-                            <Pagination/>
                         </div>
                         <div className="col-md-4">
                             <Aside/>

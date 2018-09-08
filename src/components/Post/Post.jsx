@@ -1,11 +1,11 @@
 import './Post.scss';
 
-import React, {Component} from "react";
+import React, {PureComponent} from "react";
 import PropTypes from 'prop-types';
 import {Button} from 'reactstrap';
 import {Link} from 'react-router-dom';
 
-export default class Post extends Component {
+export default class Post extends PureComponent {
     static propTypes = {
         title: PropTypes.string.isRequired,
         text: PropTypes.string.isRequired,

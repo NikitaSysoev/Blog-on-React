@@ -1,31 +1,25 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from 'react-redux';
 
-import {load} from 'actions/comments';
+import {load, loadPrev, loadNext} from 'actions/comments';
 
 import CommentsList from '../components/CommentsList';
 import Pagination from '../components/Pagination';
 
 class CommentsListContainer extends Component {
     componentDidMount() {
-        this.props.loadComments();
+        const {loadComments} = this.props;
+        loadComments();
     }
 
-    loadPrev = (e) => {
-        e.preventDefault();
-    };
-
-    loadNext = (e) => {
-        e.preventDefault();
-    };
 
     render() {
-        const {comments, loading} = this.props;
+        const {comments, loading, loadNext, loadPrev, page} = this.props;
         return (
             comments && !loading ?
                 <Fragment>
                     <CommentsList comments={comments}/>
-                    <Pagination loadNext={this.loadNext} loadPrev={this.loadPrev}/>
+                    <Pagination page={page} loadNext={loadNext} loadPrev={loadPrev}/>
                 </Fragment>
                 :
                 'Loading...'
@@ -38,13 +32,16 @@ function mapStateToProps(state, props) {
         ...props,
         comments: state.comments.entities,
         loading: state.comments.loading,
+        page: state.comments.page,
     }
 }
 
 function mapDispatchToProps(dispatch, props) {
     return {
         ...props,
-        loadComments: () => load(dispatch),
+        loadComments: () => dispatch(load()),
+        loadNext: () => dispatch(loadNext()),
+        loadPrev: () => dispatch(loadPrev()),
     }
 }
 

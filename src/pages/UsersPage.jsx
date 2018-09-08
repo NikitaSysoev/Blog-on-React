@@ -15,7 +15,6 @@ export default class UsersPage extends Component {
                                 Users
                             </h1>
                             <UsersContainer/>
-                            <Pagination/>
                         </div>
                         <div className="col-md-4">
                             <Aside/>

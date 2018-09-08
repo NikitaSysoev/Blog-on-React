@@ -8,11 +8,11 @@ export default class Pagination extends Component {
     static defaultProps = {};
     
     render() {
-        const {loadPrev, loadNext} = this.props;
+        const {loadPrev, loadNext, page} = this.props;
         return (
         <ul className="Pagination">
             <li className="page-item">
-                <a className="page-link" onClick={loadPrev}>← Older</a>
+                { page<=1 ? null: <a className="page-link" onClick={loadPrev}>← Older</a> }
             </li>
             <li className="page-item">
                 <a className="page-link" onClick={loadNext}>Newer →</a>

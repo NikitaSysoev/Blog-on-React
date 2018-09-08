@@ -1,5 +1,5 @@
 import {handleActions} from 'redux-actions';
-import {loadStart, loadComplete, loadFail, loadNext} from "actions/posts";
+import {loadStart, loadComplete, loadFail, loadNextComplete, loadPrevComplete} from "actions/posts";
 
 const initialState = {
     loading: true,
@@ -31,10 +31,26 @@ export default handleActions({
             entities: [],
         }
     },
-    [loadNext]: (state, action) => {
+    [loadNextComplete]: (state, action) => {
         return {
             loading: false,
-            page: 2,
+            entities: action.payload.map((post) => ({
+                id: post.id,
+                title: post.title,
+                text: post.body,
+            })),
+            page: state.page + 1,
         }
-    }
+    },
+    [loadPrevComplete]: (state, action) => {
+        return {
+            loading: false,
+            entities: action.payload.map((post) => ({
+                id: post.id,
+                title: post.title,
+                text: post.body,
+            })),
+            page: state.page - 1,
+        }
+    },
 }, initialState);

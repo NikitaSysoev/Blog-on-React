@@ -1,30 +1,27 @@
-import React, {Component, Fragment} from 'react';
-
+import React, {PureComponent, Fragment} from 'react';
 import {connect} from 'react-redux';
-import {load, loadNext} from 'actions/posts';
+
+import {load, loadNext, loadPrev} from 'actions/posts';
 
 import PostsList from '../components/PostsList';
+import Pagination from '../components/Pagination';
 
-class PostsContainer extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            posts: []
-        }
-    }
-
+class PostsContainer extends PureComponent {
     componentDidMount() {
-        const {loadPosts, page} = this.props;
-        loadPosts(page);
+        const {loadPosts} = this.props;
+        loadPosts();
     }
 
     render() {
-        const {posts, loading, page, loadNext} = this.props;
-
+        const {posts, loading, loadNext, loadPrev, page} = this.props;
         return (
-            posts && !loading ? <div><PostsList posts={posts}/>
-                <button onClick={loadNext}>ee</button>
-            </div> : 'Loading...'
+            posts && !loading ?
+                <div>
+                    <PostsList posts={posts}/>
+                    <Pagination page={page} loadPrev={loadPrev} loadNext={loadNext}/>
+                </div>
+                :
+                'Loading...'
         );
     }
 }
@@ -41,8 +38,9 @@ function mapToStateProps(state, props) {
 function mapDispatchToProps(dispatch, props) {
     return {
         ...props,
-        loadPosts: () => load(dispatch),
-        loadNext: () => dispatch(loadNext()),
+        loadPosts: () => dispatch(load()),
+        loadNext:  () => dispatch(loadNext()),
+        loadPrev:  ()=>dispatch(loadPrev()),
     }
 }
 

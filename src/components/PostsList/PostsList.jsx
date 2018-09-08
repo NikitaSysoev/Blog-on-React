@@ -1,10 +1,10 @@
 import './PostsList.scss';
 
-import React, {Component} from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import Post from '../Post';
 
-export default class PostsList extends Component {
+export default class PostsList extends PureComponent {
     static propTypes = {
         posts: PropTypes.arrayOf(
             PropTypes.shape({
@@ -17,6 +17,7 @@ export default class PostsList extends Component {
     static defaultProps = {
         posts: [],
     };
+
 
     render() {
         const {posts} = this.props;
